@@ -28,6 +28,8 @@ For any contributing or problem solving you could find me [here]() and [here]()
 
 # React Test Task
 
+https://docs.google.com/document/d/1YRFiUcDFNj0ocAWVGudGr71GZidsBKEvwmamLELriRA/edit
+
 Please build a web application that is able to search through GitHub users and their corresponding projects using the GitHub api: https://docs.github.com/en/rest using React. The application shall contain 2 screens.
 
 The first screen will contain a search bar that can search through any user on the GitHub website at the top with a list of results underneath.  Each item should contain the avatar image, username, and the number of repositories they have.  The list view shall not be paginated.  Additionally, the search will automatically update upon each letter entered.
