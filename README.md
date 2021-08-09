@@ -47,8 +47,10 @@ Also make sure that the application completely works before submitting it.
 
 Preferable technology - TypeScript
 
+https://prnt.sc/1ljej3b
+
 Bonus Points:
-● Please add something that seems “cool feature” for you. It could be CSS animation, Typescript code snippet, color theme - anything you want. Main requirement - realization time should not exceed 1 hour.
+● Please add something that seems “cool feature” for you. It could be CSS animation, Typescript code snippet, color theme - anything you want. Main requirement - realization time should not exceed 1 hnpm startour.
 
 
 
