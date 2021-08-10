@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import cn from 'classnames';
 import './RepoList.scss';
 
-export const RepoList = ({ repos, selectedLogin }) => {
+export const RepoList = ({ repos, selectedLogin, isUserSelected }) => {
   const [queryRepo, setInputRepo] = useState('');
   const filteredRepos = repos.filter(repo => repo.name.includes(queryRepo));
   const handleQueryRepo = (event) => {
@@ -33,21 +34,37 @@ export const RepoList = ({ repos, selectedLogin }) => {
           <h3>Repo List</h3>
           {filteredRepos.map(repo => (
             <div
+              className={cn({
+                'card mb-3 repo-block': true,
+                active: isUserSelected,
+              })}
               key={repo.id}
-              onClick={() => window.open(`https://github.com/${selectedLogin}/${repo.name}`, '_blank')}
-              className="card mb-3 repo-block"
             >
-              <div className="row no-gutters">
-                <div className="col-md-4 p-3">
-                  <h5 className="card-title">{`${repo.name}`}</h5>
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <p className="card-text">{`Forks: ${repo.forks_count}`}</p>
-                    <p className="card-text">{`Stars: ${repo.stargazers_count}`}</p>
+              <button
+                type="button"
+                onClick={
+                  // eslint-disable-next-line max-len
+                  () => window.open(`https://github.com/${selectedLogin}/${repo.name}`, '_blank')
+                }
+              >
+                <div className="row no-gutters">
+                  <div className="col-md-4 p-3">
+                    <h5 className="card-title">
+                      {`${repo.name}`}
+                    </h5>
+                  </div>
+                  <div className="col-md-8">
+                    <div className="card-body">
+                      <p className="card-text">
+                        {`Forks: ${repo.forks_count}`}
+                      </p>
+                      <p className="card-text">
+                        {`Stars: ${repo.stargazers_count}`}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </button>
             </div>
           ))
           }

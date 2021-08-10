@@ -4,17 +4,13 @@ import './App.scss';
 import { User } from './components/User';
 import { UsersList } from './components/UsersList';
 
-// const keyUserLogin = 'userlogin';
-
 const App = () => {
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
   const [selectedLogin, setLogin] = useState('');
   const [isUserSelected, setUserSelected] = useState(false);
   const [selectedUser, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  // const storageLogin = JSON.parse(window.localStorage.getItem(keyUserLogin));
 
   useEffect(() => {
     const loadUsers = async() => {
@@ -52,12 +48,18 @@ const App = () => {
     );
   }
 
+  if (error) {
+    return (
+      <h1>{`Error: ${error}`}</h1>
+    );
+  }
+
   return (
     <div className="container">
       <div className="row">
         <div className="col">
           <h1>Users list</h1>
-          {!users
+          {!users.length
             ? (
               <p>
                 Users list is loading...
@@ -67,6 +69,7 @@ const App = () => {
               <UsersList
                 users={users}
                 selectUser={selectUser}
+                isUserSelected={isUserSelected}
                 clearUser={clearUser}
               />
             )
@@ -80,7 +83,7 @@ const App = () => {
                 selectedLogin={selectedLogin}
                 selectLogin={setLogin}
                 isUserSelected={isUserSelected}
-                selectedUser={selectedUser}
+                user={selectedUser}
                 selectUser={selectUser}
                 clearUser={clearUser}
               />

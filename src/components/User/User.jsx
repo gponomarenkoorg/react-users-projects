@@ -1,16 +1,35 @@
+/* eslint-disable consistent-return */
 import React, { useEffect, useState } from 'react';
+import cn from 'classnames';
 import { request } from '../../api/api';
 import { RepoList } from '../RepoList/RepoList';
 
 export const User = ({
   selectedLogin,
   isUserSelected,
-  selectedUser,
   clearUser,
 }) => {
-  const [repos, setRepos] = useState(null);
+  const [user, setUser] = useState(null);
+  const [repos, setRepos] = useState([]);
+  const [userError, setUserError] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const loadUser = async() => {
+      try {
+        const loadedUser = await request(`/users/${selectedLogin}`);
+
+        setUser(loadedUser);
+      } catch (errorUser) {
+        setUserError(`Loading repos error: ${errorUser.message}`);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadUser();
+  }, [selectedLogin]);
 
   useEffect(() => {
     const loadRepos = async() => {
@@ -28,7 +47,7 @@ export const User = ({
     loadRepos();
   }, [selectedLogin]);
 
-  if (!repos) {
+  if (!repos.length) {
     return (
       <h2>User&apos;s repos are loading...</h2>
     );
@@ -40,7 +59,19 @@ export const User = ({
     );
   }
 
-  if (repos) {
+  if (userError) {
+    return (
+      <h1>{`Error: ${userError}`}</h1>
+    );
+  }
+
+  if (error) {
+    return (
+      <h1>{`Error: ${error}`}</h1>
+    );
+  }
+
+  if (repos.length) {
     return (
       <>
         <h3>User details here</h3>
@@ -53,19 +84,65 @@ export const User = ({
           : (
             <>
               <div>
-                some info about user
-                User:
-                {selectedUser.login}
-                <button
-                  type="button"
-                  onClick={clearUser}
+
+                <div className={cn({
+                  'card mb-3 user-block': true,
+                  active: isUserSelected,
+                })}
                 >
-                  Clear
-                </button>
+                  <div className="row no-gutters">
+                    <div className="col-md-4">
+                      <img
+                        src={user.avatar_url}
+                        className="card-img"
+                        alt="avatar"
+                      />
+                    </div>
+                    <div className="col-md-8">
+                      <div className="card-body">
+                        <h5 className="card-title">{user.login}</h5>
+                        <p className="card-text">
+                          {user.email && `email ${user.email}`}
+                        </p>
+                        <p className="card-text">
+                          {user.location && `location: ${user.location}`}
+                        </p>
+                        <p className="card-text">
+                          {user.created_at
+                          && `Join Date: ${user.created_at.slice(0, 10)}`}
+                        </p>
+                        <p className="card-text">
+                          {user.followers && `${user.followers} Followers`}
+                        </p>
+                        <p className="card-text">
+                          {user.location && `Following ${user.following}`}
+                        </p>
+                        <div>
+                          <p className="card-text">
+                            <small className="text-muted">
+                              {user.bio && `User's biography: ${user.bio}`}
+                            </small>
+                          </p>
+                          <button
+                            type="button"
+                            onClick={clearUser}
+                          >
+                            Clear
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div>
-                <RepoList repos={repos} selectedLogin={selectedLogin} />
+                <RepoList
+                  repos={repos}
+                  selectedLogin={selectedLogin}
+                  isUserSelected={isUserSelected}
+                />
               </div>
             </>
           )
