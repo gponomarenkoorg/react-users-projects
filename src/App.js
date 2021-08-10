@@ -77,7 +77,11 @@ const App = () => {
         </div>
         <div className="col">
           {!isUserSelected
-            ? <p>User is not selected</p>
+            ? (
+              <div className="alert alert-primary" role="alert">
+                <h1>User is not selected</h1>
+              </div>
+            )
             : (
               <User
                 selectedLogin={selectedLogin}

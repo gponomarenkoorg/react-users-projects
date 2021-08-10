@@ -49,25 +49,33 @@ export const User = ({
 
   if (!repos.length) {
     return (
-      <h2>User&apos;s repos are loading...</h2>
+      <div className="spinner-border" role="status">
+        <span className="sr-only">User&apos;s repos loading...</span>
+      </div>
     );
   }
 
   if (isLoading) {
     return (
-      <h2>User&apos;s datas loading...</h2>
+      <div className="spinner-border" role="status">
+        <span className="sr-only">User&apos;s datas loading...</span>
+      </div>
     );
   }
 
   if (userError) {
     return (
-      <h1>{`Error: ${userError}`}</h1>
+      <div className="alert alert-primary" role="alert">
+        <h1>{`Error: ${userError}`}</h1>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <h1>{`Error: ${error}`}</h1>
+      <div className="alert alert-primary" role="alert">
+        <h1>{`Error: ${error}`}</h1>
+      </div>
     );
   }
 
@@ -77,9 +85,9 @@ export const User = ({
         <h3>User details here</h3>
         {!isUserSelected
           ? (
-            <span>
-              User is not selected
-            </span>
+            <div className="alert alert-primary" role="alert">
+              <h1>User is not selected</h1>
+            </div>
           )
           : (
             <>
@@ -125,6 +133,7 @@ export const User = ({
                           </p>
                           <button
                             type="button"
+                            className="btn"
                             onClick={clearUser}
                           >
                             Clear

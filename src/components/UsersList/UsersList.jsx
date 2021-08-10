@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import './UsersList.scss';
+import { UserDetails } from '../UserDetails';
 
-export const UsersList = ({ users, selectUser, clearUser, isUserSelected }) => {
+export const UsersList = ({
+  users,
+  selectUser,
+  clearUser,
+  isUserSelected,
+}) => {
   const [queryUser, setInputUser] = useState('');
   const filteredUsers = users.filter(user => user.login.includes(queryUser));
   const handleQueryUser = (event) => {
@@ -57,7 +64,7 @@ export const UsersList = ({ users, selectUser, clearUser, isUserSelected }) => {
                     <div className="card-body">
                       <h5 className="card-title">{user.login}</h5>
                       <p className="card-text">
-                        {`Repo: ${user.public_repos}`}
+                        <UserDetails login={user.login} />
                       </p>
                     </div>
                   </div>
@@ -70,4 +77,13 @@ export const UsersList = ({ users, selectUser, clearUser, isUserSelected }) => {
       </div>
     </>
   );
+};
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(
+    PropTypes.object.isRequired,
+  ).isRequired,
+  selectUser: PropTypes.func.isRequired,
+  clearUser: PropTypes.func.isRequired,
+  isUserSelected: PropTypes.bool.isRequired,
 };

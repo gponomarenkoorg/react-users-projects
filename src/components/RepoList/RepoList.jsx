@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import './RepoList.scss';
 
@@ -72,4 +73,12 @@ export const RepoList = ({ repos, selectedLogin, isUserSelected }) => {
       </div>
     </>
   );
+};
+
+RepoList.propTypes = {
+  repos: PropTypes.arrayOf(
+    PropTypes.object.isRequired,
+  ).isRequired,
+  selectedLogin: PropTypes.string.isRequired,
+  isUserSelected: PropTypes.bool.isRequired,
 };
