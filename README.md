@@ -28,7 +28,7 @@ VS Code
 
 ## Troubleshooting
 
-For any contributing or problem solving you could find me [here](https://www.linkedin.com/in/grygoriyponomarenko/) and [here]()
+For any contributing or problem solving you could find me [here](https://www.linkedin.com/in/grygoriyponomarenko/) and [here](mailto:grygoriy.ponomarenko@gmail.com)
 
 # Layout example
 
