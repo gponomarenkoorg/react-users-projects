@@ -23,12 +23,12 @@ VS Code
 
 * Fork and clone this repository
 * Run `npm install` in your terminal
-* Run 'npm i classnames'
+* Run `npm i classnames`
 * Run `npm start`
 
 ## Troubleshooting
 
-For any contributing or problem solving you could find me [here](https://www.linkedin.com/in/grygoriyponomarenko/) and [here]()
+For any contributing or problem solving you could find me [here](https://www.linkedin.com/in/grygoriyponomarenko/) and [here](mailto:grygoriy.ponomarenko@gmail.com)
 
 # Layout example
 
