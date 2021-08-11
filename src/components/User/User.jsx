@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { request } from '../../api/api';
 import { RepoList } from '../RepoList/RepoList';
+import './User.scss';
 
 export const User = ({
   selectedLogin,
@@ -95,6 +96,7 @@ export const User = ({
 
                 <div className={cn({
                   'card mb-3 user-block': true,
+                  user__container: true,
                   active: isUserSelected,
                 })}
                 >

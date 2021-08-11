@@ -51,6 +51,7 @@ export const UsersList = ({
               <button
                 type="button"
                 onClick={() => selectUser(user.login)}
+                className="user-button"
               >
                 <div className="row no-gutters">
                   <div className="col-md-4">

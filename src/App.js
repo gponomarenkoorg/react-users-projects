@@ -55,7 +55,7 @@ const App = () => {
   }
 
   return (
-    <div className="container">
+    <div className="app container">
       <div className="row">
         <div className="col">
           <h1>Users list</h1>
