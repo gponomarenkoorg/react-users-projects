@@ -23,7 +23,7 @@ VS Code
 
 * Fork and clone this repository
 * Run `npm install` in your terminal
-* Run 'npm i classnames'
+* Run `npm i classnames`
 * Run `npm start`
 
 ## Troubleshooting
