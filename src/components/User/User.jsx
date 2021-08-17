@@ -95,7 +95,7 @@ export const User = ({
               <div>
 
                 <div className={cn({
-                  'card mb-3 user-block': true,
+                  'card mb-3 user__block': true,
                   user__container: true,
                   active: isUserSelected,
                 })}

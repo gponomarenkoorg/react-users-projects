@@ -41,7 +41,7 @@ export const UserDetails = ({ login }) => {
 
   return (
     <>
-      {number}
+      {`Repos: ${number}`}
     </>
   );
 };
